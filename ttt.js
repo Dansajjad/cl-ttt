@@ -32,16 +32,13 @@ let boardContent, isOccupied, numSquaresFilled, winCombo, turn, status;
     }
     printBoard();
 
-    rl.question('Please select a cell Num? ', (answer) => {
-      // TODO: Log the answer in a database
-      
-      rl.on('line', (answer) => {
-        console.log('You have selected cell #:', answer);
-        markCell(answer); 
-      });
 
-      if(status === "game over") rl.close();
-    });
+      rl.question('Please select a cell Num? ', (answer) => {
+        rl.on('line', (answer) => {
+          console.log('You have selected cell #:', answer);
+          markCell(answer); 
+        });  
+      });
 
 }());
 
@@ -63,7 +60,6 @@ function markCell (cellNum) {
     checkForWinners(boardContent[cellNum]);
     if(numSquaresFilled === 9) {
       console.log("Game Over");
-      status = "game over";
       rl.close();
     }
     
@@ -76,12 +72,14 @@ function markCell (cellNum) {
 
 function checkForWinners(symbol) {
   console.log('HELLO', symbol);
+  console.log('boardContent', boardContent);
+
   for(let i = 0; i < winCombo.length; i++) {
-    if(winCombo[i][0] == symbol &&
-       winCombo[i][1] == symbol &&
-       winCombo[i][2] == symbol) {
-        console.log(symbol + "Won!");
-        status = "game over";
+    if(boardContent[winCombo[i][0]] == symbol &&
+       boardContent[winCombo[i][1]] == symbol &&
+       boardContent[winCombo[i][2]] == symbol) {
+        console.log(symbol + " Won!");
+        rl.close();
     }
   }
 }
