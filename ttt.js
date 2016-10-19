@@ -45,7 +45,7 @@ let boardContent, isOccupied, numSquaresFilled, winCombo, turn, status;
 function markCell (cellNum) {
   //check if cell is occupied
   if(isOccupied[cellNum] === false) {
-    //check if who is playing
+    //check who is playing
     if(turn % 2 === 0) { 
       boardContent[cellNum] = "X" 
     } else {
@@ -56,7 +56,6 @@ function markCell (cellNum) {
     turn++;
     numSquaresFilled++;
     isOccupied[cellNum] = true;
-    console.log('checking for winner');
     checkForWinners(boardContent[cellNum]);
     if(numSquaresFilled === 9) {
       console.log("Game Over");
@@ -71,8 +70,6 @@ function markCell (cellNum) {
 }
 
 function checkForWinners(symbol) {
-  console.log('HELLO', symbol);
-  console.log('boardContent', boardContent);
 
   for(let i = 0; i < winCombo.length; i++) {
     if(boardContent[winCombo[i][0]] == symbol &&
