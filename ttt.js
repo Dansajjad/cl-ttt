@@ -32,13 +32,12 @@ let boardContent, isOccupied, numSquaresFilled, winCombo, turn, status;
     }
     printBoard();
 
+    console.log('Please select a cell Num? '); //ask question
 
-      rl.question('Please select a cell Num? ', (answer) => {
-        rl.on('line', (answer) => {
-          console.log('You have selected cell #:', answer);
-          markCell(answer); 
-        });  
-      });
+    rl.on('line', (answer) => {
+      console.log('You have selected cell #:', answer);
+      markCell(answer); 
+    });  
 
 }());
 
@@ -46,11 +45,8 @@ function markCell (cellNum) {
   //check if cell is occupied
   if(isOccupied[cellNum] === false) {
     //check who is playing
-    if(turn % 2 === 0) { 
-      boardContent[cellNum] = "X" 
-    } else {
-      boardContent[cellNum] = "O" 
-    }
+    if(turn % 2 === 0) boardContent[cellNum] = "X"; 
+    else boardContent[cellNum] = "O"; 
 
     //Continue with 
     turn++;

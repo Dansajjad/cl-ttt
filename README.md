@@ -8,7 +8,6 @@
 2. Make sure you've node and bower installed
 3. cd into the root folder of your cloned repo and run `node ttt.js`
 
-~~~
 ### Running tests
 
 To be added soon.
